@@ -57,20 +57,3 @@ node main.js playlistAddTrack 4 5
 
 
 
-
-//----------------------------------------- VISADO3 ----------------------------------------------------------------
-
-
-
-{
-	"artistId": 0,
-	"email": "alexander-1704@hotmail.com"
-}
-
-{
-	"artistId": 0,
-	"email": "yimycifuentes17@gmail.com"
-}
-
-
-
