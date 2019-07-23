@@ -15,8 +15,10 @@ function callServiceGmail(){
             }
         })
         .catch((error) =>{
-            slack.envioSlack(`[${hora}]: servicio NotifyEmail ha dejado de funcionar”`);
-            run.runNotify = false; 
+            if(run.runNotify){
+                slack.envioSlack(`[${hora}]: servicio NotifyEmail ha dejado de funcionar`);
+                run.runNotify = false;
+            } 
         });
 };
 
@@ -29,15 +31,22 @@ function callServiceLoggly(){
         }
     })
     .catch((error) =>{
-        slack.envioSlack(`[${hora}]: servicio Loggly ha dejado de funcionar”`); 
-        run.runLoggly = false;
+        if(run.runLoggly){
+            slack.envioSlack(`[${hora}]: servicio Loggly ha dejado de funcionar`); 
+            run.runLoggly = false;
+        }
     });
 };
+
+function monitorNotyfy(){
+    slack.envioSlack(`[${hora}]: Monitor continua notificando`);
+}
 
 function monitoreoServicios(){
     callServiceGmail();
     callServiceLoggly();
 }
 
-setInterval(monitoreoServicios, 30000);
+setInterval(monitoreoServicios, 5000);
+//setInterval(monitorNotyfy, 30000)
 
